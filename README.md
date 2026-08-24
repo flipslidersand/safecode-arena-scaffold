@@ -1,10 +1,12 @@
 # safecode-arena
 
 Automated evaluation runner for AI-generated code candidates (Rust + Wasmtime).
-
 Executes candidate code inside a WebAssembly sandbox, scores each run against a YAML spec, and produces a ranked comparison report.
 
-## Architecture
+AI が生成したコード候補を自動評価するランナーです（Rust + Wasmtime）。
+候補コードを WebAssembly サンドボックス内で実行し、YAML スペックに基づいてスコアリングして、ランキング形式の比較レポートを生成します。
+
+## Architecture / アーキテクチャ
 
 ```
 spec.yaml (test cases + scoring rules)
@@ -18,19 +20,19 @@ spec.yaml (test cases + scoring rules)
        └─ report  — Markdown summary with per-case breakdown
 ```
 
-## Usage
+## Usage / 使い方
 
 ```bash
 cargo build --release
 
-# Evaluate a single candidate
+# Evaluate a single candidate / 単一候補を評価
 safecode-arena eval --file candidate.wasm --spec spec.yaml
 
-# Compare multiple candidates in a directory
+# Compare multiple candidates / 複数候補を比較
 safecode-arena compare --dir ./candidates --spec spec.yaml --out report.md
 ```
 
-## Spec format
+## Spec format / スペックの書き方
 
 ```yaml
 cases:
@@ -41,18 +43,18 @@ cases:
     max_memory_bytes: 10485760   # 10 MB
 ```
 
-## Tech Stack
+## Tech Stack / 技術スタック
 
-- **Language:** Rust
-- **Sandbox:** Wasmtime (component model)
-- **Storage:** SQLite (evaluation results via rusqlite)
-- **Config:** YAML (serde_yaml)
+- **Language / 言語:** Rust
+- **Sandbox / サンドボックス:** Wasmtime (component model)
+- **Storage / ストレージ:** SQLite (rusqlite)
+- **Config / 設定:** YAML (serde_yaml)
 
-## Status
+## Status / ステータス
 
 Scaffold phase — CLI skeleton complete, evaluation engine in progress.
+スキャフォールドフェーズ — CLI スケルトン完成、評価エンジン実装中。
 
 ## License
 
 MIT
-
